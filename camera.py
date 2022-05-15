@@ -43,6 +43,6 @@ class video:
         stringData = b64_src + stringData
 
         return stringData
-    
+
 c1=video()
 

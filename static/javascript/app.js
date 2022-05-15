@@ -48,9 +48,10 @@ const doScreenshot = () => {
   return data
 };
 
-  
+
+const begin=async()=>{
 if ("mediaDevices" in navigator && navigator.mediaDevices.getUserMedia) {
-    start(constraints);
+    await start(constraints);
   }
 
   setInterval(()=>{
@@ -74,3 +75,7 @@ socket.on('response_back', function(image){
     //console.log(image);
     pimg.setAttribute('src', image );
   });
+
+}
+
+begin();

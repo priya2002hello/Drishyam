@@ -23,6 +23,7 @@ def handle_message(data):
 #Receieving frames from client , processing and sending back to client again.
 @socketio.on('image')
 def image(data_image):
+    print("img url connected")
     frame =c1.readb64(data_image)
     frame =c1.get_frames(frame)
     stringData=c1.encodeb64(frame)
