@@ -1,11 +1,24 @@
+canvas
+{
+    width:300px;
+    height:300px;
+}
+video
+{
+   width:300px;
+    height:300px;
+}
 img
 {
-  width:300px;
+
+  width:400px;
   height:300px;
   border:solid;
 
 }
-.video
+#video
 {
-    align:center;
+    transform: rotateY(180deg);
+    -webkit-transform:rotateY(180deg); /* Safari and Chrome */
+    -moz-transform:rotateY(180deg); /* Firefox */
 }

@@ -1,21 +1,17 @@
 import cv2
-
+import base64,io
+from PIL import Image
+import numpy as np
 # including classifier used to identify face. returns co-ordinates of rectangle where face is found.
 face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 
 
 class video:
-    def __init__(self):
-        self.camera = cv2.VideoCapture(0, cv2.CAP_DSHOW)  # camera turns on
 
-    def get_frames(self):
-        success, frame = self.camera.read()  # read the camera frame
-
-        if not success:
-            return "error"
+    def get_frames(self,frame):
 
         # apply face classifier to a frame
-        faces = face_cascade.detectMultiScale(frame, 1.1, 4)
+        faces = face_cascade.detectMultiScale(frame, 1.1, 3)
 
         for (x, y, z, w) in faces:
             cv2.rectangle(frame, (x, y), (x + z, y + w), (255, 0, 0), 2)
@@ -25,21 +21,28 @@ class video:
 
         return frame
 
-    def __del__(self):
-        self.camera.release()
-        cv2.destroyAllWindows()
+   #decoding base64 url
+    def readb64(self,base64_string):
+        idx = base64_string.find('base64,')
+        base64_string = base64_string[idx + 7:]
 
+        sbuf = io.BytesIO()
 
-def gen_frames():
-    c1 = video()
-    while True:
-        frame = c1.get_frames()
-        if frame == "error":
-            print("camera not open")
-            break
-        else:
-            frame = c1.get_frames()
-            ret, buffer = cv2.imencode('.jpg', frame)
-            frame = buffer.tobytes()
-            yield (b'--frame\r\n'
-                   b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')  # concat frame one by one and show result
+        sbuf.write(base64.b64decode(base64_string, ' /'))
+        pimg = Image.open(sbuf)
+
+        return cv2.cvtColor(np.array(pimg), cv2.COLOR_RGB2BGR)
+
+   #encoding base64 url.
+    def encodeb64(self,frame):
+        imgencode = cv2.imencode('.jpeg', frame, [cv2.IMWRITE_JPEG_QUALITY, 40])[1]
+
+        # base64 encode
+        stringData = base64.b64encode(imgencode).decode('utf-8')
+        b64_src = 'data:image/jpeg;base64,'
+        stringData = b64_src + stringData
+
+        return stringData
+    
+c1=video()
+
