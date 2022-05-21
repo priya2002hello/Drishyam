@@ -1,12 +1,13 @@
-console.log("hello world");
+console.log("app.js executed, turning on camera ....");
 
 const video = document.querySelector("video");
 const canvas = document.querySelector("canvas");
-const pimg = document.querySelector("img");
+const pimg = document.querySelector(".face-detect-video");
+const rimg=document.querySelector(".face-recognise-image");
 const but=document.querySelector("button")
 
 
-   video.style.display = "none";
+video.style.display = "none";
 const constraints =  {
   video: {
     width: {
@@ -21,7 +22,7 @@ const constraints =  {
     }
   }
 } ;
-const FPS = 4;
+const FPS = 2;
 
  var socket = io.connect("http://127.0.0.1:5000");
 
@@ -31,6 +32,7 @@ const FPS = 4;
 
  });
 
+ 
 const start = async (constraints) => {
   const stream = await navigator.mediaDevices.getUserMedia(constraints);
   video.srcObject = stream;
@@ -50,31 +52,43 @@ const doScreenshot = () => {
 
 
 const begin=async()=>{
+
 if ("mediaDevices" in navigator && navigator.mediaDevices.getUserMedia) {
     await start(constraints);
   }
 
-  setInterval(()=>{
+   setInterval(()=>{
   
       let url=doScreenshot();
       console.log(url);
-      socket.emit('image',url);
+      socket.emit('detect face',url);
     
-    },1000/FPS) 
+    },1000/FPS)  
   
-/* but.onclick=()=>{
+   setInterval(()=>{
+    let url=doScreenshot();
+    console.log(url);
+    socket.emit('rec face',url);
+
+   },5000)
+ but.onclick=()=>{
 
   let url=doScreenshot();
   console.log(url);
-  socket.emit('image',url);
-  
+  socket.emit('rec face',url); 
+
 };
- */
+  
 
 socket.on('response_back', function(image){
     //console.log(image);
     pimg.setAttribute('src', image );
+   
   });
+
+socket.on('rec_face',(image)=>{
+    rimg.setAttribute('src',image);
+})
 
 }
 

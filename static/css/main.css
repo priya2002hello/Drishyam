@@ -1,3 +1,24 @@
+.img-col {
+    float: left;
+    width: 33.33%;
+    padding: 5px;
+  }
+.face-recognise-image
+{
+  height: 100%;
+  width: 100%;
+}
+/* Clear floats after image containers */
+.video-row::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+
+body
+{
+    background-color: antiquewhite;
+}
 canvas
 {
     width:300px;

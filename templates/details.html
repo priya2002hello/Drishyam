@@ -1,0 +1,64 @@
+{% extends 'base.html'%}
+
+{% block head %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"
+        integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA=="
+        crossorigin="anonymous">
+</script>
+
+<link rel="stylesheet" href="{{url_for('static',filename='css/main.css')}}">
+
+<title> Live Stream Video</title>
+
+{% endblock %}
+
+
+{% block body %}
+
+<div class="candidate-detail">
+    <div>
+        Name:- <label>Priyanka</label>
+    </div>
+    <div>
+        Seat No :- <label>123456</label>
+    </div>
+    <div>
+        <img src="{{url_for('static',filename='image/20548.jpg')}}">
+    </div>
+    <div>
+        <button>Verify</button>
+    </div>
+</div>
+<h2>Live Stream app</h2>
+<div class ='video-row'>
+        
+        <div class="img-col">   
+                <h2>camera</h2>
+                <img class="face-detect-video">
+                <button>click</button>
+        </div>
+        
+        <div class="img-col" >
+                <h2>face-recognition </h2>
+                <img class="face-recognise-image" ><br>
+                
+                 names:-<h3> {{names}} </h3>  
+                
+        </div>
+        
+        
+</div>
+<div id="container">
+    <video autoplay src="" ></video>
+    
+    <canvas class="d-none"></canvas>
+</div>
+
+
+<div><a href="{{url_for('index')}}"><button>Back to Home</button></div></a>
+<script src="{{url_for('static',filename='javascript/app.js')}}" defer></script>
+
+
+{% endblock %}
