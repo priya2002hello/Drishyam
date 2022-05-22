@@ -5,7 +5,7 @@ const canvas = document.querySelector("canvas");
 const pimg = document.querySelector(".face-detect-video");
 const rimg=document.querySelector(".face-recognise-image");
 const but=document.querySelector("button")
-
+const names=document.querySelector(".face-name")
 
 video.style.display = "none";
 const constraints =  {
@@ -83,11 +83,13 @@ if ("mediaDevices" in navigator && navigator.mediaDevices.getUserMedia) {
 socket.on('response_back', function(image){
     //console.log(image);
     pimg.setAttribute('src', image );
-   
+    
   });
+  
 
-socket.on('rec_face',(image)=>{
-    rimg.setAttribute('src',image);
+socket.on('rec_face',(data)=>{
+    rimg.setAttribute('src',data["img_url"]);
+    names.innerHTML=`Name : ${data["names"]}`;
 })
 
 }

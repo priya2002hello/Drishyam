@@ -1,0 +1,53 @@
+{% extends 'base.html'%}
+
+{% block head %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"
+        integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA=="
+        crossorigin="anonymous">
+</script>
+
+<link rel="stylesheet" href="{{url_for('static',filename='css/main.css')}}">
+
+<title> Drishyam- Update Criminal Records </title>
+
+{% endblock %}
+
+
+{% block body %}
+
+<h1>Drishyam - Criminal records</h1>
+<div>
+    <form>
+        <div>
+            Name :- <input type="text" class="name" name="name" id="name">
+        </div>
+        </form>
+        <div><button class="update-criminal-record">take photo</button></div>
+
+    <div class ='video-row'>
+        
+            <div class="img-col">   
+                    
+                    <img class="fvideo">
+                    
+            </div>
+        <div class="img-col">   
+                    
+                <img class="face-detect-video">
+                
+        </div>
+    </div>
+    <div id="container">
+            <video autoplay src="" ></video>
+            
+            <canvas class="d-none"></canvas>
+    </div>
+</div>
+
+<div><a href="/"><button> back to home </button></a></div>
+
+<script src="{{url_for('static',filename='javascript/criminal-app.js')}}" defer></script>
+
+{% endblock %}
