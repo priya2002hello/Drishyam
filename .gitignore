@@ -1,8 +1,2 @@
-static/image_dataset
-static/image
-static/url
-static/javascript/download_image.js
 face/encoding.txt
-face/download_images.py
-face/haarcascade_frontalface_default.xml
 .env

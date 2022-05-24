@@ -20,5 +20,5 @@ def readb64(base64_string):
 
             return cv2.cvtColor(np.array(pimg), cv2.COLOR_RGB2BGR)
         except:
-            print("There was an issue in reading b64 readings")
+            print("read_b64.py:- Error")
 

@@ -16,22 +16,24 @@
 
 
 {% block body %}
+<!--Browse to single candidate profile by giving seat no-->
 
 <h1>Drishyam</h1>
 <div>
-    <form action="" method="">
+    
+    <form>
+        <h2>Fill in Candidate Info to view details</h2>
         <div>
-            Enter your seat no :- <input type="text">
+            Enter Seat No :- <input type="number" class="seat-no">
         </div>
         <div>
-            <a href="/details"><input type="button" value="View details & verify"></a>
+            <a class="details-link"><input type="button" value="View details & verify" class="verify"></a>
         </div>
         
     </form>
 </div>
 
 <a href="/"><button> back to home </button></a>
-
-
+<script src="{{url_for('static',filename='javascript/candidate_application.js')}}" defer></script>
 
 {% endblock %}

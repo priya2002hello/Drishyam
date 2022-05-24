@@ -63,7 +63,8 @@ const begin = async () => {
 
   if (StreamStarted) {
     await turnCameraOn();
-  } else {
+  } 
+  else {
     console.log("Stream not started yet");
   }
 };

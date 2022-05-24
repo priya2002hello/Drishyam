@@ -17,47 +17,48 @@
 
 {% block body %}
 
-<div class="candidate-detail">
+{% if info=="Candidate not present in Records" %}
+    <div><h1>Sorry! Candidate was not found in records</h1> </div>
+{% else %}
+    <div class="candidate-detail">
     <div>
-        Name:- <label>Priyanka</label>
+        Name:- <label id="candidate-name">{{info["name"]}}</label>
     </div>
     <div>
-        Seat No :- <label>123456</label>
+        Seat No :- <label id="candidate-seatno">{{info["seatno"]}}</label>
     </div>
     <div>
-        <img src="{{url_for('static',filename='image/20548.jpg')}}">
+        <img src={{info["img_url"]}}>
     </div>
     <div>
-        <button>Verify</button>
+        <button class="verify-button">Verify</button>
     </div>
-</div>
-<h2>Live Stream app</h2>
-<div class ='video-row'>
+    </div>
+
+        <div class ='video-row'>
         
         <div class="img-col">   
-                <h2>camera</h2>
                 <img class="face-detect-video">
-                <button>click</button>
+                <div ><h3 class="form-alert" style="color:red;"></h3></div>
+                
         </div>
         
         <div class="img-col" >
-                <h2>face-recognition </h2>
                 <img class="face-recognise-image" ><br>
-                <div><h3 class="face-name"></h3></div>
+                <div><h3 class="face-name"></h3></div><br>
+                <div><h3 class="candidate-status"></h3></div>
                 
         </div>
         
         
-</div>
-<div id="container">
-    <video autoplay src="" ></video>
+        </div>
+        <div id="container">
+        <video autoplay src="" ></video>
     
-    <canvas class="d-none"></canvas>
-</div>
-
-
-<div><a href="{{url_for('index')}}"><button>Back to Home</button></div></a>
-<script src="{{url_for('static',filename='javascript/app.js')}}" defer></script>
-
-
+        <canvas class="d-none"></canvas>
+        </div>
+        <script type="text/javascript"> window.myVar1 = "{{info['seatno']}}" </script>
+        <script src="{{url_for('static',filename='javascript/verify_app.js')}}" defer></script>
+{% endif %}
+<div><a href="{{url_for('application')}}"><button>Back</button></a></div>
 {% endblock %}

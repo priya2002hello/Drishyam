@@ -7,9 +7,9 @@ class DetectFace:
   def detect(self,frame1):
     try:
         frame = cv2.cvtColor(frame1, cv2.COLOR_BGR2RGB)
-        print("[INFO] detecting faces...")
+        print("\ndetect_faces.py :- [INFO] detecting faces...")
         boxes = face_recognition.face_locations(frame, model='hog')
-        print(boxes)
+        print("\n detect_faces.py face location:- ",boxes)
 
         for (top, right, bottom, left) in boxes:
             # draw the predicted face name on the image
@@ -19,6 +19,7 @@ class DetectFace:
 
         return frame
     except:
-        print("face was not detected here")
+        print("\ndetect_face.py :- Error ,face was not detected here")
+        #return original frame as it is
         frame1 = cv2.cvtColor(frame1, cv2.COLOR_BGR2RGB)
         return frame1

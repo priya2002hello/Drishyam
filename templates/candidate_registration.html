@@ -1,0 +1,45 @@
+{% extends 'base.html'%}
+
+
+{% block head %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"
+        integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA=="
+        crossorigin="anonymous">
+        </script>
+<link rel="stylesheet" href="{{url_for('static',filename='css/main.css')}}">
+
+<title> Candidate Registration</title>
+{% endblock %}
+{% block body %}
+<h1>Candidate Registration </h1>
+<form class="task-form" action="/candidate_registration" method="post" enctype="multipart/form-data">
+        <h2>Candidate Registration</h2>
+        <div class="form-control">
+                <div>
+                        Enter Name:-<input type="text" name="name" class="Name-input" placeholder="Enter Name" />
+                </div>
+                <div>
+                        Enter Seat No:- <input type="number" name="seatno" class="seat-no"
+                                placeholder="for eg:- 123456">
+                </div>
+                <div>
+                        Upload Photo in .jpg format:-
+                        <input type="file" accept="image/jpeg, image/png,image/jpg" name="file" id="file">
+                        <br><img class="output-image" name="output_image">
+                        <h4 class="filename"></h4>
+
+                </div>
+
+                <div>
+                        <button type="submit" class="submit-btn">submit</button>
+                </div>
+
+        </div>
+
+        <div class="form-alert"></div>
+
+</form>
+
+<script src="{{url_for('static',filename='javascript/register.js')}}" defer></script>
+{% endblock %}

@@ -1,12 +1,10 @@
-import face_recognition
-import pickle
+
 import cv2
-import os
-import base64, io
+import base64
 from PIL import Image
 import numpy as np
 
-
+#encode cv2 image to base64 url
 def encodeb64(frame):
 
         try:
@@ -19,4 +17,4 @@ def encodeb64(frame):
             return stringData
 
         except:
-            print("there was an error while encoding  image")
+            print("Error:- encodeb64")
