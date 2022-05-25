@@ -6,11 +6,17 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"
         integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA=="
         crossorigin="anonymous">
+
+
 </script>
 
-<link rel="stylesheet" href="{{url_for('static',filename='css/main.css')}}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" />
 
-<title> Drishyam- Applications </title>
+<!--font awesome icons-->
+<script src="https://kit.fontawesome.com/f5688bff63.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="{{url_for('static',filename='css/application.css')}}">
+
+<title>Candidate Applications </title>
 
 {% endblock %}
 
@@ -18,22 +24,65 @@
 {% block body %}
 <!--Browse to single candidate profile by giving seat no-->
 
-<h1>Drishyam</h1>
-<div>
-    
-    <form>
-        <h2>Fill in Candidate Info to view details</h2>
-        <div>
-            Enter Seat No :- <input type="number" class="seat-no">
-        </div>
-        <div>
-            <a class="details-link"><input type="button" value="View details & verify" class="verify"></a>
-        </div>
-        
-    </form>
-</div>
 
-<a href="/"><button> back to home </button></a>
+<header class="header">
+        <h1 class="logo">Drishyam<i class="fa-solid fa-eye"></i></h1>
+
+</header>
+
+<section class="home" id="home">
+
+    <div class="content">
+            <h3>Candidate Info </h3>
+            <p>Please fill in candidate seat no </p>
+            <label for="seat_no" ><h2 >Enter Seat No :- </h2></label>
+            <input type="number" name="seat_no" id="seat-no" class="input-box" ><br>
+            <a class="details-link"><input type="button" value="View details & verify" id="verify" class="btn" ></a>
+    </div>
+
+</section>
+
+
+
+ <!-- footer section starts  -->
+ <section class="footer">
+
+    <div class="box-container">
+
+        <div class="box">
+            <h3> groco <i class="fas fa-shopping-basket"></i> </h3>
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquam, saepe.</p>
+            <div class="share">
+                <a href="#" class="fab fa-facebook-f"></a>
+                <a href="#" class="fab fa-twitter"></a>
+                <a href="#" class="fab fa-instagram"></a>
+                <a href="#" class="fab fa-linkedin"></a>
+            </div>
+        </div>
+
+        <div class="box">
+            <h3>contact info</h3>
+            <a href="#" class="links"> <i class="fas fa-phone"></i> +123-456-7890 </a>
+            <a href="#" class="links"> <i class="fas fa-phone"></i> +111-222-3333 </a>
+            <a href="#" class="links"> <i class="fas fa-envelope"></i> shaikhanas@gmail.com </a>
+            <a href="#" class="links"> <i class="fas fa-map-marker-alt"></i> mumbai, india - 400104 </a>
+        </div>
+
+        <div class="box">
+            <h3>quick links</h3>
+            <a href="/" class="links"> <i class="fas fa-arrow-right"></i> home </a>
+          
+        </div>
+
+     
+    </div>
+
+    <div class="credit"> created by <span> mr. web designer </span> | all rights reserved </div>
+
+</section>
+
+<!-- footer section ends -->
+
 <script src="{{url_for('static',filename='javascript/candidate_application.js')}}" defer></script>
 
 {% endblock %}

@@ -22,10 +22,26 @@
 {% else %}
     <div class="candidate-detail">
     <div>
-        Name:- <label id="candidate-name">{{info["name"]}}</label>
+            Seat No :- <label id="candidate-seatno">{{info["seatno"]}}</label>
     </div>
     <div>
-        Seat No :- <label id="candidate-seatno">{{info["seatno"]}}</label>
+        Name:- <label id="candidate-name">{{info["name"]}}</label>
+    </div>
+    
+    <div>
+        email :- <label id="email">{{info["email"]}}</label>
+    </div>
+    <div>
+        Age :- <label id="age">{{info["age"]}}</label>
+    </div>
+    <div>
+        Gender :- <label id="gender">{{info["gender"]}}</label>
+    </div>
+    <div>
+        Place :- <label id="place">{{info["place"]}}</label>
+    </div>
+    <div>
+        Bio :- <label id="bio">{{info["bio"]}}</label>
     </div>
     <div>
         <img src={{info["img_url"]}}>

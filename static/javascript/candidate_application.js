@@ -1,7 +1,7 @@
 console.log("application")
-const seatno=document.querySelector(".seat-no")
+const seatno=document.getElementById("seat-no")
 const href=document.querySelector(".details-link")
-const verify=document.querySelector(".verify")
+const verify=document.getElementById("verify")
 
 
 verify.addEventListener("click",()=>{

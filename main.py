@@ -32,7 +32,12 @@ def details(seatno):
     info={
         "name":data["name"],
         "img_url":data["url"],
-         "seatno":data["seatno"]
+         "seatno":data["seatno"],
+        "email": data["email"],
+        "gender": data["gender"],
+        "age": data["age"],
+        "bio": data["bio"]
+
     }
 
     print("\n details.html :- ",info)
@@ -57,7 +62,11 @@ def register():
         #get form content
         name=request.form["name"]
         seatno=request.form["seatno"]
-
+        email=request.form["email"]
+        gender=request.form["gender"]
+        age=request.form["age"]
+        bio=request.form["bio"]
+        place=request.form["place"]
         if request.files:
            file=request.files["file"]
            filename=secure_filename(file.filename)
@@ -74,7 +83,13 @@ def register():
                "name":name,
                "seatno":seatno,
                "url":url,
-               "encodings":single_encoding
+               "encodings":single_encoding,
+                "email":email,
+                "gender":gender,
+                "age":age,
+                 "bio":bio,
+                "place":place
+
                }
                candidate_records.insert_one(data)
                print("\n main.py :- candidate_registration route :image saved")

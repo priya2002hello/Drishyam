@@ -6,13 +6,10 @@ const img=document.querySelector('.output-image')
 const FileName=document.querySelector('.filename')
 const url_img=document.querySelector('.url-img')
 
-var socket = io.connect("http://127.0.0.1:5000");
 
+//show uploaded image
 defaultbtn.addEventListener("change",(event)=>{
-   
-    
-    
-        const reader=new FileReader();
+       const reader=new FileReader();
         reader.addEventListener("load",()=>{
             const result=reader.result;
             console.log(result)
