@@ -166,16 +166,25 @@ def update(data):
     name=data['name']
     image_url=data['image_url']
     count=data['count']
+    age=data['age']
+    gender= data['gender']
+    place= data['place']
+    case_info=data['case_info']
     frame = readb64(image_url)
     encodings=encoding.gen_encodings(frame)
-    print("Criminal Records updated " + name )
+    print("Criminal Records updated " + name +age +gender +place +case_info )
     for single_encoding in encodings:
         single_encoding= single_encoding.tolist()
         record={
             "name":name,
+            "age": age,
+            "gender": gender,
+            "case_info": case_info,
+            "place": place,
             "image_url":image_url,
             "encodings": single_encoding,
             "count":count
+
         }
         criminal_records.insert_one(record)
     print("\n count is :",count)

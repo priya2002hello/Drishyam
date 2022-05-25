@@ -3,15 +3,19 @@ console.log("update criminal record");
 const video = document.querySelector("video");
 const canvas = document.querySelector("canvas");
 const pimg = document.querySelector(".face-detect-video");
-const fimg = document.querySelector(".fvideo");
-const but = document.querySelector(".update-criminal-record");
+const but = document.getElementById("update-criminal-record");
 const names = document.getElementById("name");
-
+const box=document.getElementById("camera-box");
+const age=document.getElementById("age");
+const place=document.getElementById("place");
+const gender_male=document.getElementById("male");
+const gender_female=document.getElementById("female");
+const case_info=document.getElementById("case-info");
+let gender;
 let count = 0;
 let StreamStarted = false;
 let localStream = null;
 let photo=false;
-//video.style.display = "none";
 const constraints = {
   video: {
     width: {
@@ -38,7 +42,7 @@ const turnCameraOn = async () => {
   if ("mediaDevices" in navigator && navigator.mediaDevices.getUserMedia) {
     await start(constraints);
     console.log("turning on camera");
-    pimg.style.visibility = "visible";
+    box.style.visibility = "visible";
   }
 };
 const start = async (constraints) => {
@@ -70,6 +74,21 @@ const begin = async () => {
 };
 
 but.addEventListener("click", async () => {
+   console.log("button click")
+   if(gender_female.checked)
+   {
+    gender="female";
+   }
+   else{
+     gender="male";
+   }
+   console.log({
+     name:names.value,
+     age:age.value,
+     place:place.value,
+     gender:gender,
+     case_info:case_info.value
+   })
   StreamStarted = true;
   await begin();
   console.log("taking snaps");
@@ -82,11 +101,10 @@ but.addEventListener("click", async () => {
       if(photo)
       {
 
-      pimg.style.visibility="hidden";
-      fimg.style.visibility="hidden";
-      video.style.display="none";
+      box.style.display="none";
+      pimg.style.display="none";
       clearInterval(resetid);
-      alert("Photo took successfully")
+      alert("Criminal Record Saved Successfully")
      
       
       if (localStream!= null) {
@@ -105,14 +123,18 @@ but.addEventListener("click", async () => {
 
 socket.on("response_back", function (url) {
   //console.log(image);
-  pimg.style.visibility="visible";
+  box.style.visibility="visible";
   pimg.setAttribute("src", url);
   let name1=names.value
   console.log(url,name1);
   socket.emit('update criminal record',{
-    name:name1,
-    image_url:url,
-    count:count
+     name:names.value,
+     age:age.value,
+     place:place.value,
+     gender:gender,
+     case_info:case_info.value,
+     image_url:url,
+     count:count
   })
   count++;
   console.log(count)
@@ -124,5 +146,4 @@ socket.on("response_back", function (url) {
   });
 
 count=0;
-fimg.style.visibility = "hidden";
-pimg.style.visibility = "hidden";
+

@@ -8,7 +8,12 @@
         crossorigin="anonymous">
 </script>
 
-<link rel="stylesheet" href="{{url_for('static',filename='css/main.css')}}">
+<link rel="stylesheet" href="{{url_for('static',filename='css/criminal_record.css')}}">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" />
+
+<!--font awesome icons-->
+<script src="https://kit.fontawesome.com/f5688bff63.js" crossorigin="anonymous"></script>
 
 <title> Drishyam- Update Criminal Records </title>
 
@@ -17,7 +22,149 @@
 
 {% block body %}
 
-<h1>Drishyam - Criminal records</h1>
+<header class="header">
+        <h1 class="logo">Drishyam<i class="fa-solid fa-eye"></i></h1>
+</header>
+
+<!-- home section starts  -->
+
+<section class="home" id="home">
+
+        <div class="content">
+                <h3>Add <span> Criminal </span> Record </h3>
+                <p>Enter New Criminal Records Here !!</p>
+        </div>
+
+</section>
+<!--home section ends here-->
+
+<!--Record form section begins-->
+<section class="record-form" id="record-form">
+     
+        <div class="content">
+                <form class="signup-form">
+
+                        <!-- form header -->
+                        <div class="form-header">
+                                <h1>Criminal record</h1>
+                        </div>
+                        <!-- form body -->
+                        <div class="form-body">
+                                <!-- Full Name-->
+                                <div class="form-group">
+                                        <label for="name" class="label-title">Full Name *</label>
+                                        <input type="text" name="name" id="name" class="form-input"
+                                                placeholder="Enter Your Full Name" required="required" />
+                                </div>
+                        
+                        <!-- Gender-->
+
+                        <div class="form-group">
+                                <label class="label-title">Gender:</label>
+                                <div class="input-group">
+                                        <label for="male"><input type="radio" name="gender" value="male"
+                                                        id="male"> Male</label>
+                                        <label for="female"><input type="radio" name="gender" value="female"
+                                                        id="female"> Female</label>
+                                </div>
+                        </div>
+
+                        <div class="horizontal-group">
+                                <!-- Age -->
+                                <div class="form-group left">
+                                        <label for="age" class="label-title">Age</label>
+                                        <input type="number" name="age" min="18" max="80" value="18"
+                                                class="form-input" id="age">
+                                </div>
+                                <div class="form-group right">
+                                        <label for="place" class="label-title">Place</label>
+                                        <input type="text" id="place" name="place" placeholder="Enter your address"
+                                                class="form-input">
+                                </div>
+
+                         </div>
+                         
+                         <!-- Case Info-->
+                         <div class="form-group">
+                                <label for="info" class="label-title">Case Info</label>
+                                <textarea class="form-input" id="case-info" rows="4" cols="50"
+                                        style="height:auto;font-family:sans-serif;" name="bio"
+                                        placeholder="Please Enter details about the Case "></textarea>
+                        </div>
+                         </div>
+                         <!-- form-footer -->
+                         <div class="form-footer">
+                                <span>* required</span>
+                                <h4>Please Click on this button and wait till the snap is took</h4>
+                                
+                        </div>
+
+                </form>
+                <button class="btn" id="update-criminal-record" href="#features">Take Photograph</button>
+        </div>
+
+
+</section>
+<!--Record form section ends here-->
+
+<section class="features" id="features">
+
+        <div class="box-container">
+                  
+                <div class="box" id="camera-box">   
+                         <h3>Please wait till the camera window closes</h3>
+                        <img  alt="" class="face-detect-video">
+                        
+                </div>
+
+                <div >
+                        <video style="visibility: hidden;" autoplay src=""></video>
+                        
+                        <canvas class="d-none" style="visibility: hidden;"></canvas>
+                </div>
+        </div>
+</section>
+<!-- footer section starts  -->
+<section class="footer">
+
+        <div class="box-container">
+    
+            <div class="box">
+                <h3> Drishyam <i class="fa-solid fa-eye"></i> </h3>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquam, saepe.</p>
+                <div class="share">
+                    <a href="#" class="fab fa-facebook-f"></a>
+                    <a href="#" class="fab fa-twitter"></a>
+                    <a href="#" class="fab fa-instagram"></a>
+                    <a href="#" class="fab fa-linkedin"></a>
+                </div>
+            </div>
+    
+            <div class="box">
+                <h3>contact info</h3>
+                <a href="#" class="links"> <i class="fas fa-phone"></i> +123-456-7890 </a>
+                <a href="#" class="links"> <i class="fas fa-phone"></i> +111-222-3333 </a>
+                <a href="#" class="links"> <i class="fas fa-envelope"></i> shaikhanas@gmail.com </a>
+                <a href="#" class="links"> <i class="fas fa-map-marker-alt"></i> mumbai, india - 400104 </a>
+            </div>
+    
+            <div class="box">
+                <h3>quick links</h3>
+                <a href="/" class="links"> <i class="fas fa-arrow-right"></i> home </a>
+                <a href="#features" class="links"> <i class="fas fa-arrow-right"></i> features </a>
+              
+            </div>
+    
+            
+        </div>
+    
+        <div class="credit"> created by <span> mr. web designer </span> | all rights reserved </div>
+    
+    </section>
+    
+    <!-- footer section ends -->
+    
+<!-- <h1>Drishyam - Criminal records</h1>
 <div>
     <form>
         <div>
@@ -46,7 +193,7 @@
     </div>
 </div>
 
-<div><a href="/"><button> back to home </button></a></div>
+<div><a href="/"><button> back to home </button></a></div> -->
 
 <script src="{{url_for('static',filename='javascript/criminal-app.js')}}" defer></script>
 
