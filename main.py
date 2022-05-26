@@ -36,7 +36,8 @@ def details(seatno):
         "email": data["email"],
         "gender": data["gender"],
         "age": data["age"],
-        "bio": data["bio"]
+        "bio": data["bio"],
+        "place":data["place"]
 
     }
 

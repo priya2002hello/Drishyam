@@ -4,20 +4,18 @@ const video = document.querySelector("video");
 const canvas = document.querySelector("canvas");
 const pimg = document.querySelector(".face-detect-video");
 const rimg = document.querySelector(".face-recognise-image");
-const but = document.querySelector("button");
 const names = document.querySelector(".face-name");
-const verify_btn = document.querySelector(".verify-button");
+const verify_btn = document.getElementById("verify-button");
 const seatno = document.getElementById("candidate-seatno");
-const params = window.location.search; //gets parameters in url
-const candidate_seatno = new URLSearchParams(params).get("seatno"); //gets id of requested element from url
 const candidate_status = document.querySelector(".candidate-status");
 const form_alert=document.querySelector(".form-alert");
-
+const box_face=document.getElementById("camera-box");
+const box_rec_face=document.getElementById("face-rec-box");
 
 let StreamStarted = false;
 let localStream = null;
 let photo =0;
-video.style.display = "none";
+
 let resetid;
 const constraints = {
   video: {
@@ -45,8 +43,7 @@ const turnCameraOn = async () => {
   if ("mediaDevices" in navigator && navigator.mediaDevices.getUserMedia) {
     await start(constraints);
     console.log("turning on camera");
-    pimg.style.visibility = "visible";
-    rimg.style.visibility = "visible";
+    box_face.style.visibility="visible";
   }
 };
 const start = async (constraints) => {
@@ -66,6 +63,7 @@ const doScreenshot = () => {
   return data;
 };
 
+//begin => turn camera on 
 const begin = async () => {
   console.log("begin executed");
 
@@ -75,11 +73,10 @@ const begin = async () => {
     console.log("Stream not started yet");
   }
 };
+
+//stop
 const stop=()=>{
-      pimg.style.visibility = "hidden";
-      video.style.display = "none";
-   
-      
+      box_face.style.display = "none";      
       clearInterval(resetid);
 
       if (localStream != null) {
@@ -88,35 +85,23 @@ const stop=()=>{
         });
       }
 }
+
+//verify candidate
 verify_btn.addEventListener("click", async() => {
+
   StreamStarted = true;
   await begin();
   console.log("taking snaps");
-
-   resetid = setInterval(() => {
-    let url = doScreenshot();
-    socket.emit("detect face", url);
-
-   /*  if (photo==1) {
-      
-      form_alert.innerHTML="candidate verification completed successfully"
-      stop()
-      
-    }
-    else if(photo==2)
-    {
-      form_alert.innerHTML="candidate is not available here, please try again"
-
-    }
-    else if(photo==3)
-    {
-      form_alert.innerHTML="There was some error , please try again"
-    } */
-
-
+  
+  //take screenshots and send to server
+  resetid = setInterval(() => {
+       let url = doScreenshot();
+       socket.emit("detect face", url);
   }, 1000 / FPS);
+
 });
 
+//response back event - display face detected videos.
 socket.on("response_back", function (url) {
   
   //console.log(image);
@@ -131,6 +116,7 @@ socket.on("response_back", function (url) {
   socket.emit("rec face", data_image);
 });
 
+//rec_face event => verify candidate and display details
 socket.on("rec_face", async(data) => {
 
   if(data["status"]=="unavailable")
@@ -146,11 +132,13 @@ socket.on("rec_face", async(data) => {
   }
   else
   {
-    rimg.style.visibility="visible"
+    box_rec_face.style.visibility="visible"
+    
     rimg.setAttribute("src", data["img_url"]);
     names.innerHTML = `Name : ${data["names"]}`;
     candidate_status.innerHTML = `Status : ${data["status"]}`;
     form_alert.innerHTML="Candidate Verification Complete"
+    verify_btn.style.visibility="hidden";
     clearInterval(resetid);
     if (localStream != null) {
       await localStream.getTracks().map(function (val) {
@@ -162,5 +150,4 @@ socket.on("rec_face", async(data) => {
   
 });
 
-pimg.style.visibility = "hidden";
-rimg.style.visibility = "hidden";
+

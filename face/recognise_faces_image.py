@@ -77,7 +77,7 @@ class recognise_face:
                 if(name=="Unknown"):
                    status="eligible"
                 else:
-                   status="not eligible"
+                   status="Found Criminal Records , not eligible for certification"
 
                 data = {"image": frame,
                         "name": name,

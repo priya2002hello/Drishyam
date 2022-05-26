@@ -8,18 +8,135 @@
         crossorigin="anonymous">
 </script>
 
-<link rel="stylesheet" href="{{url_for('static',filename='css/main.css')}}">
+<link rel="stylesheet" href="{{url_for('static',filename='css/details.css')}}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" />
 
-<title> Live Stream Video</title>
+<!--font awesome icons-->
+<script src="https://kit.fontawesome.com/f5688bff63.js" crossorigin="anonymous"></script>
+
+
+<title>Candidate Verification Portal</title>
 
 {% endblock %}
 
 
 {% block body %}
+<header class="header">
+    <h1 class="logo">Drishyam<i class="fa-solid fa-eye"></i></h1>
+</header>
+
+<!-- home section starts  -->
 
 {% if info=="Candidate not present in Records" %}
-    <div><h1>Sorry! Candidate was not found in records</h1> </div>
+     <section class="home" id="home">
+
+     <div class="content">
+            <h3>Seat-No Not Found In<span> Candiadte </span> Record </h3>
+            <p>Please go back and enter Seat-No Again</p>
+            <a href="/application" class="btn">Go Back</a>
+    </div>
+
+     </section>
+   
 {% else %}
+     
+   <section class="home" id="home">
+
+    <div class="content">
+            <h3>View&<span>Verify </span>Candidate Details </h3>
+            <p>Candidate verification for clearance certificate</p>
+    </div>
+
+   </section>
+
+   <section class="candidate_details" id="detail">
+
+         <div class="content">
+
+         
+
+                <div class="form-body">
+                    <!-- Full Name-->
+                    <div class="horizontal-group">
+                        <div class="form-group left">
+                            <label for="name" class="label-title">Full Name *</label>
+                            <h4 name="name" id="name" class="form-input">{{info["name"]}}</h4>
+                        </div>
+                        <div class="form-group right">
+                            <label for="email" class="label-title">Email</label>
+                            <h4 name="email" id="email" class="form-input">{{info["email"]}}</h4>
+                        </div>
+
+                    </div>
+                <div class="horizontal-group">
+                    <div class="form-group left">
+                    <label for="Seat-No" class="label-title">Seat-No</label>
+                    <h4 type="number" name="seatno" id="Seat-No" class="form-input">{{info["seatno"]}}</h4>
+                </div>
+                <div class="form-group right">
+                    <label class="label-title">Gender:</label>
+                    <h4 name="gender" id="gender" class="form-input">{{info["gender"]}}</h4>
+                </div>
+                </div>
+                 
+                <div class="horizontal-group">
+                    <!-- Age -->
+                    <div class="form-group left">
+                            <label for="age" class="label-title">Age</label>
+                            <h4 id="age" name="age" class="form-input">{{info["age"]}}</h4>
+                    </div>
+                    <div class="form-group right">
+                            <label for="place" class="label-title">Place</label>
+                            <h4 name="place" id="place" class="form-input">{{info["place"]}}</h4>
+                    </div>
+                </div>
+
+                <div class="form-group">
+
+                    <label for="picture" class="label-title">
+                           Profile Picture
+                    </label><br>
+                    <img src={{info["img_url"]}} id="picture">
+                </div>
+
+                <!-- Bio -->
+                <div class="form-group">
+                    <label for="bio" class="label-title">Personal Profile</label>
+                    <p name="bio" id="bio" class="form-input">{{info["bio"]}}</p>
+                </div>
+                
+            </div>
+
+            
+            <div class="form-footer">
+                  <button class="btn" id="verify-button">Verify</button>
+            </div>
+            </div>
+         </div>
+   </section>
+    
+
+   <section class="features" id="features">
+    <div class="box-container">
+                  
+        <div class="box" id="camera-box" style="visibility: hidden;">     
+                <img class="face-detect-video">
+               <p class="form-alert" style="color:red;"></p>
+        </div>
+        <div class="box" id="face-rec-box" style="visibility: hidden;">
+            <img class="face-recognise-image" >
+            <p><div class="face-name"></div><br>
+            <div class="candidate-status"></div></p>
+            
+        </div>
+       </div>
+      <div style="display:none">
+        <video  autoplay src=""></video>
+    
+       <canvas class="d-none" ></canvas>
+       </div>
+   </section>
+    <!--
     <div class="candidate-detail">
     <div>
             Seat No :- <label id="candidate-seatno">{{info["seatno"]}}</label>
@@ -73,8 +190,44 @@
     
         <canvas class="d-none"></canvas>
         </div>
-        <script type="text/javascript"> window.myVar1 = "{{info['seatno']}}" </script>
-        <script src="{{url_for('static',filename='javascript/verify_app.js')}}" defer></script>
+    -->
 {% endif %}
-<div><a href="{{url_for('application')}}"><button>Back</button></a></div>
+<section class="footer">
+
+    <div class="box-container">
+
+        <div class="box">
+            <h3> Drishyam <i class="fa-solid fa-eye"></i> </h3>
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquam, saepe.</p>
+            <div class="share">
+                <a href="#" class="fab fa-facebook-f"></a>
+                <a href="#" class="fab fa-twitter"></a>
+                <a href="#" class="fab fa-instagram"></a>
+                <a href="#" class="fab fa-linkedin"></a>
+            </div>
+        </div>
+
+        <div class="box">
+            <h3>contact info</h3>
+            <a href="#" class="links"> <i class="fas fa-phone"></i> +123-456-7890 </a>
+            <a href="#" class="links"> <i class="fas fa-phone"></i> +111-222-3333 </a>
+            <a href="#" class="links"> <i class="fas fa-envelope"></i> shaikhanas@gmail.com </a>
+            <a href="#" class="links"> <i class="fas fa-map-marker-alt"></i> mumbai, india - 400104 </a>
+        </div>
+
+        <div class="box">
+            <h3>quick links</h3>
+            <a href="/" class="links"> <i class="fas fa-arrow-right"></i> home </a>
+            <a href="#features" class="links"> <i class="fas fa-arrow-right"></i> features </a>
+          
+        </div>
+
+        
+    </div>
+
+    <div class="credit"> created by <span> mr. web designer </span> | all rights reserved </div>
+    
+</section>
+<script type="text/javascript"> window.myVar1 = "{{info['seatno']}}" </script>
+<script src="{{url_for('static',filename='javascript/verify_app.js')}}" defer></script>
 {% endblock %}
