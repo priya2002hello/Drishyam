@@ -1,10 +1,7 @@
-
+#encode cv2 image to base64 url
 import cv2
 import base64
-from PIL import Image
-import numpy as np
 
-#encode cv2 image to base64 url
 def encodeb64(frame):
 
         try:

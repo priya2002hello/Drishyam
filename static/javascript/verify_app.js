@@ -1,5 +1,4 @@
-console.log("app.js executed, turning on camera ....");
-console.log(myVar1)
+//View & Verify candidate details
 const video = document.querySelector("video");
 const canvas = document.querySelector("canvas");
 const pimg = document.querySelector(".face-detect-video");
@@ -12,11 +11,16 @@ const form_alert=document.querySelector(".form-alert");
 const box_face=document.getElementById("camera-box");
 const box_rec_face=document.getElementById("face-rec-box");
 
+//initialize variables
+let count=0;
 let StreamStarted = false;
 let localStream = null;
-let photo =0;
-
+let photo =false;
 let resetid;
+const FPS = 2;
+
+
+//define video constraints
 const constraints = {
   video: {
     width: {
@@ -31,14 +35,16 @@ const constraints = {
     },
   },
 };
-const FPS = 2;
 
+//connect to server socketio
 var socket = io.connect("http://127.0.0.1:5000");
 
+//connect event
 socket.on("connect", function () {
   socket.emit("my event", { data: "I'm connected!" });
 });
 
+//Permission to turn camera on
 const turnCameraOn = async () => {
   if ("mediaDevices" in navigator && navigator.mediaDevices.getUserMedia) {
     await start(constraints);
@@ -46,24 +52,30 @@ const turnCameraOn = async () => {
     box_face.style.visibility="visible";
   }
 };
+
+////start video stream
 const start = async (constraints) => {
   const stream = await navigator.mediaDevices.getUserMedia(constraints);
   video.srcObject = stream;
   localStream=stream
 };
 
+//take screenshots 
 const doScreenshot = () => {
   canvas.width = video.videoWidth;
   canvas.height = video.videoHeight;
+
+  //take screenshot and get url of frame
   canvas.getContext("2d").drawImage(video, 0, 0);
   let data = canvas.toDataURL("image/jpeg");
 
-  //console.log(data)
+ 
+  //clear the canvas after getting url of frame
   canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
   return data;
 };
 
-//begin => turn camera on 
+//start camera only when streamstarted is set true
 const begin = async () => {
   console.log("begin executed");
 
@@ -74,13 +86,13 @@ const begin = async () => {
   }
 };
 
-//stop
-const stop=()=>{
-      box_face.style.display = "none";      
+//turn camera off and stop taking snaps
+const Stop=async()=>{
+ 
       clearInterval(resetid);
 
       if (localStream != null) {
-        localStream.getTracks().map(function (val) {
+        await localStream.getTracks().map(function (val) {
           val.stop();
         });
       }
@@ -119,33 +131,53 @@ socket.on("response_back", function (url) {
 //rec_face event => verify candidate and display details
 socket.on("rec_face", async(data) => {
 
+  //Candidate is absent in the frame
   if(data["status"]=="unavailable")
   {
-    rimg.style.visibility="hidden";
-    form_alert.innerHTML="Candidate unavailable ";
-    
+    if(count==0)
+    {
+      rimg.style.visibility="hidden";
+      form_alert.innerHTML="Candidate unavailable ";
+    }
   }
+
+  //Server Side Error
   else if(data["status"]=="seatno not found" || data["status"]=="error")
   {
-    rimg.style.visibility="hidden";
-    form_alert.innerHTML="There was some issue ";
+    if(count==0)
+    {
+      rimg.style.visibility="hidden";
+      form_alert.innerHTML="There was some issue ";
+    }
+    
   }
+
+  //verification complete
   else
   {
+
     box_rec_face.style.visibility="visible"
-    
+    rimg.style.visibility="visible"
+
+    //Once the candidate is recognised and verified no further changes will be done
+    if(count==0)
+    {
     rimg.setAttribute("src", data["img_url"]);
     names.innerHTML = `Name : ${data["names"]}`;
     candidate_status.innerHTML = `Status : ${data["status"]}`;
     form_alert.innerHTML="Candidate Verification Complete"
     verify_btn.style.visibility="hidden";
-    clearInterval(resetid);
-    if (localStream != null) {
-      await localStream.getTracks().map(function (val) {
-        val.stop();
-      });
-
     }
+    
+    
+   photo=true;
+   count++;
+  }
+  
+  //turn camera off and stop recognition if photo is true
+  if(photo)
+  {
+   await Stop();
   }
   
 });

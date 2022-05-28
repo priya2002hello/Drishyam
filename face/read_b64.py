@@ -1,7 +1,4 @@
-import face_recognition
-import pickle
 import cv2
-import os
 import base64, io
 from PIL import Image
 import numpy as np

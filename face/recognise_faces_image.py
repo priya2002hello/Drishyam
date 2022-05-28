@@ -2,15 +2,12 @@
 import face_recognition
 import pickle
 import cv2
-import os
-import base64, io
-from PIL import Image
 import numpy as np
-from set_mongo import criminal_records,candidate_records
+from set_mongo import candidate_records
 
 class recognise_face:
     def __init__(self):
-        # load the known faces and embeddings
+        # load the criminal record faces and embeddings
      try:
          print("\n recognise_faces_image.py :- [INFO] loading encodings...")
          self.data = pickle.loads(open('encoding.txt', "rb").read())
@@ -75,7 +72,7 @@ class recognise_face:
 
                 frame = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
                 if(name=="Unknown"):
-                   status="eligible"
+                   status="No Criminal Records Found, Eligible for police clearance"
                 else:
                    status="Found Criminal Records , not eligible for certification"
 

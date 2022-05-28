@@ -1,5 +1,8 @@
+#generate encodings of faces
+
 import cv2
 import face_recognition
+
 class Encoding:
     def gen_encodings(self,frame):
         try:

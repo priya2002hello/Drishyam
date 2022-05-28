@@ -55,9 +55,9 @@ body{
     color:var(--orange);
 }
 .home{
-    background: url("../2.webp") ;
+    background: url("../home_bg.webp") ;
     display: flex;
-    align-items: center;
+    align-items: center; 
     justify-content: center;
     background-color:#eee;
     padding-top: 17rem;

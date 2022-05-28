@@ -2,7 +2,10 @@
 
 {% block head %}
 
+<!--jquery source file-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!--socketio api-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"
         integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA=="
         crossorigin="anonymous">
@@ -15,26 +18,27 @@
 <!--font awesome icons-->
 <script src="https://kit.fontawesome.com/f5688bff63.js" crossorigin="anonymous"></script>
 
-<title> Drishyam- Update Criminal Records </title>
+<title>Add Criminal Record </title>
 
 {% endblock %}
 
 
 {% block body %}
 
+<!--header starts-->
 <header class="header">
         <h1 class="logo">Drishyam<i class="fa-solid fa-eye"></i></h1>
 </header>
+<!--header ends-->
+
 
 <!-- home section starts  -->
 
 <section class="home" id="home">
-
-        <div class="content">
+       <div class="content">
                 <h3>Add <span> Criminal </span> Record </h3>
                 <p>Enter New Criminal Records Here !!</p>
         </div>
-
 </section>
 <!--home section ends here-->
 
@@ -107,6 +111,7 @@
 </section>
 <!--Record form section ends here-->
 
+<!--features section begins-->
 <section class="features" id="features">
 
         <div class="box-container">
@@ -124,6 +129,9 @@
                 </div>
         </div>
 </section>
+<!--feature section ends-->
+
+
 <!-- footer section starts  -->
 <section class="footer">
 
@@ -133,65 +141,28 @@
                 <h3> Drishyam <i class="fa-solid fa-eye"></i> </h3>
                 <p>Follow us on following platforms:</p>
                 <div class="share">
-                    <a href="#" class="fab fa-facebook-f"></a>
-                    <a href="#" class="fab fa-twitter"></a>
-                    <a href="#" class="fab fa-instagram"></a>
-                    <a href="#" class="fab fa-linkedin"></a>
+                    <a  class="fab fa-facebook-f"></a>
+                    <a  class="fab fa-twitter"></a>
+                    <a class="fab fa-instagram"></a>
+                    <a  class="fab fa-linkedin"></a>
                 </div>
             </div>
     
             <div class="box">
                 <h3>contact info</h3>
-                <a href="#" class="links"> <i class="fas fa-phone"></i> +123-456-7890 </a>
-                <a href="#" class="links"> <i class="fas fa-envelope"></i> nikampriyanka2002@gmail.com</a>
-                <a href="#" class="links"> <i class="fas fa-map-marker-alt"></i> Pune-India, 411015</a>
+                <a class="links"> <i class="fas fa-phone"></i> +123-456-7890 </a>
+                <a class="links"> <i class="fas fa-envelope"></i> nikampriyanka2002@gmail.com</a>
+                <a  class="links"> <i class="fas fa-map-marker-alt"></i> Pune-India, 411015</a>
             </div>
     
             <div class="box">
                 <h3>quick links</h3>
                 <a href="/" class="links"> <i class="fas fa-arrow-right"></i> home </a>
-                
-              
             </div>
-    
-            
         </div>
+</section>
     
-        
-    </section>
-    
-    <!-- footer section ends -->
-    
-<!-- <h1>Drishyam - Criminal records</h1>
-<div>
-    <form>
-        <div>
-            Name :- <input type="text" class="name" name="name" id="name">
-        </div>
-        </form>
-        <div><button class="update-criminal-record">take photo</button></div>
-
-    <div class ='video-row'>
-        
-            <div class="img-col">   
-                    
-                    <img class="fvideo">
-                    
-            </div>
-        <div class="img-col">   
-                    
-                <img class="face-detect-video">
-                
-        </div>
-    </div>
-    <div id="container">
-            <video autoplay src="" ></video>
-            
-            <canvas class="d-none"></canvas>
-    </div>
-</div>
-
-<div><a href="/"><button> back to home </button></a></div> -->
+<!-- footer section ends -->
 
 <script src="{{url_for('static',filename='javascript/criminal-app.js')}}" defer></script>
 

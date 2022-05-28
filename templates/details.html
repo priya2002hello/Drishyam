@@ -1,14 +1,17 @@
 {% extends 'base.html'%}
 
 {% block head %}
-
+<!--jquery source file-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!--socketio api-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"
         integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA=="
         crossorigin="anonymous">
 </script>
 
 <link rel="stylesheet" href="{{url_for('static',filename='css/details.css')}}">
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" />
 
 <!--font awesome icons-->
@@ -21,12 +24,16 @@
 
 
 {% block body %}
+
+<!--header start-->
 <header class="header">
     <h1 class="logo">Drishyam<i class="fa-solid fa-eye"></i></h1>
 </header>
+<!--header ends-->
 
 <!-- home section starts  -->
 
+<!--candidate  not found -->
 {% if info=="Candidate not present in Records" %}
      <section class="home" id="home">
 
@@ -37,7 +44,8 @@
     </div>
 
      </section>
-   
+
+<!--candidate found--> 
 {% else %}
      
    <section class="home" id="home">
@@ -49,19 +57,18 @@
 
    </section>
 
+   <!--candidate details class begins-->
    <section class="candidate_details" id="detail">
 
          <div class="content">
-
-         
-
                 <div class="form-body">
-                    <!-- Full Name-->
                     <div class="horizontal-group">
+                        <!-- Full Name-->
                         <div class="form-group left">
                             <label for="name" class="label-title">Full Name *</label>
                             <h4 name="name" id="name" class="form-input">{{info["name"]}}</h4>
                         </div>
+                        <!--email-->
                         <div class="form-group right">
                             <label for="email" class="label-title">Email</label>
                             <h4 name="email" id="email" class="form-input">{{info["email"]}}</h4>
@@ -69,30 +76,37 @@
 
                     </div>
                 <div class="horizontal-group">
+                    
+                    <!--seat no-->
                     <div class="form-group left">
                     <label for="Seat-No" class="label-title">Seat-No</label>
                     <h4 type="number" name="seatno" id="Seat-No" class="form-input">{{info["seatno"]}}</h4>
-                </div>
-                <div class="form-group right">
+                    </div>
+
+                    <!--gender-->
+                    <div class="form-group right">
                     <label class="label-title">Gender:</label>
                     <h4 name="gender" id="gender" class="form-input">{{info["gender"]}}</h4>
-                </div>
+                    </div>
                 </div>
                  
                 <div class="horizontal-group">
+                    
                     <!-- Age -->
                     <div class="form-group left">
                             <label for="age" class="label-title">Age</label>
                             <h4 id="age" name="age" class="form-input">{{info["age"]}}</h4>
                     </div>
+
+                    <!--place-->
                     <div class="form-group right">
                             <label for="place" class="label-title">Place</label>
                             <h4 name="place" id="place" class="form-input">{{info["place"]}}</h4>
                     </div>
                 </div>
 
+                <!--upload profile picure-->
                 <div class="form-group">
-
                     <label for="picture" class="label-title">
                            Profile Picture
                     </label><br>
@@ -107,7 +121,7 @@
                 
             </div>
 
-            
+            <!--verify button-->
             <div class="form-footer">
                   <button class="btn" id="verify-button">Verify</button>
             </div>
@@ -115,7 +129,7 @@
          </div>
    </section>
     
-
+   <!--features section starts-->
    <section class="features" id="features">
     <div class="box-container">
                   
@@ -136,98 +150,45 @@
        <canvas class="d-none" ></canvas>
        </div>
    </section>
-    <!--
-    <div class="candidate-detail">
-    <div>
-            Seat No :- <label id="candidate-seatno">{{info["seatno"]}}</label>
-    </div>
-    <div>
-        Name:- <label id="candidate-name">{{info["name"]}}</label>
-    </div>
-    
-    <div>
-        email :- <label id="email">{{info["email"]}}</label>
-    </div>
-    <div>
-        Age :- <label id="age">{{info["age"]}}</label>
-    </div>
-    <div>
-        Gender :- <label id="gender">{{info["gender"]}}</label>
-    </div>
-    <div>
-        Place :- <label id="place">{{info["place"]}}</label>
-    </div>
-    <div>
-        Bio :- <label id="bio">{{info["bio"]}}</label>
-    </div>
-    <div>
-        <img src={{info["img_url"]}}>
-    </div>
-    <div>
-        <button class="verify-button">Verify</button>
-    </div>
-    </div>
-
-        <div class ='video-row'>
-        
-        <div class="img-col">   
-                <img class="face-detect-video">
-                <div ><h3 class="form-alert" style="color:red;"></h3></div>
-                
-        </div>
-        
-        <div class="img-col" >
-                <img class="face-recognise-image" ><br>
-                <div><h3 class="face-name"></h3></div><br>
-                <div><h3 class="candidate-status"></h3></div>
-                
-        </div>
-        
-        
-        </div>
-        <div id="container">
-        <video autoplay src="" ></video>
-    
-        <canvas class="d-none"></canvas>
-        </div>
-    -->
 {% endif %}
+<!--footer begins-->
 <section class="footer">
 
     <div class="box-container">
 
         <div class="box">
             <h3> Drishyam <i class="fa-solid fa-eye"></i> </h3>
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquam, saepe.</p>
+            <p>Follow us on following platforms:</p>
             <div class="share">
-                <a href="#" class="fab fa-facebook-f"></a>
-                <a href="#" class="fab fa-twitter"></a>
-                <a href="#" class="fab fa-instagram"></a>
-                <a href="#" class="fab fa-linkedin"></a>
+                <a  class="fab fa-facebook-f"></a>
+                <a  class="fab fa-twitter"></a>
+                <a  class="fab fa-instagram"></a>
+                <a  class="fab fa-linkedin"></a>
             </div>
         </div>
 
         <div class="box">
             <h3>contact info</h3>
-            <a href="#" class="links"> <i class="fas fa-phone"></i> +123-456-7890 </a>
-            <a href="#" class="links"> <i class="fas fa-phone"></i> +111-222-3333 </a>
-            <a href="#" class="links"> <i class="fas fa-envelope"></i> shaikhanas@gmail.com </a>
-            <a href="#" class="links"> <i class="fas fa-map-marker-alt"></i> mumbai, india - 400104 </a>
+            <a  class="links"> <i class="fas fa-phone"></i> +123-456-7890 </a>
+            <a  class="links"> <i class="fas fa-envelope"></i> nikampriyanka2002@gmail.com</a>
+            <a  class="links"> <i class="fas fa-map-marker-alt"></i> Pune-India, 411015 </a>
         </div>
 
         <div class="box">
             <h3>quick links</h3>
             <a href="/" class="links"> <i class="fas fa-arrow-right"></i> home </a>
-            <a href="#features" class="links"> <i class="fas fa-arrow-right"></i> features </a>
+            <a href="/application" class="links"> <i class="fas fa-arrow-right"></i> View Candidate
+                Applications </a>
           
         </div>
-
-        
     </div>
-
-    <div class="credit"> created by <span> mr. web designer </span> | all rights reserved </div>
     
 </section>
-<script type="text/javascript"> window.myVar1 = "{{info['seatno']}}" </script>
+
+<script type="text/javascript"> 
+
+    window.myVar1 = "{{info['seatno']}}" 
+
+</script>
 <script src="{{url_for('static',filename='javascript/verify_app.js')}}" defer></script>
 {% endblock %}

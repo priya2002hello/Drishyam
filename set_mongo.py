@@ -1,8 +1,11 @@
+
+#connect server to MongoDB database
 import pymongo
 import os
 from dotenv import load_dotenv,find_dotenv
 
 load_dotenv(find_dotenv())
+#get connection string from .env file
 mongoURl=os.getenv('MongoURI')
 try:
     client = pymongo.MongoClient(mongoURl)

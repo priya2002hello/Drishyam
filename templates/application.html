@@ -1,8 +1,10 @@
 {% extends 'base.html'%}
 
 {% block head %}
-
+<!--jquery source file-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!--socketio api-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"
         integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA=="
         crossorigin="anonymous">
@@ -24,12 +26,14 @@
 {% block body %}
 <!--Browse to single candidate profile by giving seat no-->
 
-
+<!--header start-->
 <header class="header">
         <h1 class="logo">Drishyam<i class="fa-solid fa-eye"></i></h1>
 
 </header>
+<!--header end-->
 
+<!--home section start-->
 <section class="home" id="home">
 
     <div class="content">
@@ -41,7 +45,7 @@
     </div>
 
 </section>
-
+<!--home section ends-->
 
 
  <!-- footer section starts  -->
@@ -53,18 +57,18 @@
             <h3> Drishyam <i class="fa-solid fa-eye"></i> </h3>
             <p>Follow us on following platforms:</p>
             <div class="share">
-                <a href="#" class="fab fa-facebook-f"></a>
-                <a href="#" class="fab fa-twitter"></a>
-                <a href="#" class="fab fa-instagram"></a>
-                <a href="#" class="fab fa-linkedin"></a>
+                <a  class="fab fa-facebook-f"></a>
+                <a  class="fab fa-twitter"></a>
+                <a  class="fab fa-instagram"></a>
+                <a  class="fab fa-linkedin"></a>
             </div>
         </div>
 
         <div class="box">
             <h3>contact info</h3>
-            <a href="#" class="links"> <i class="fas fa-phone"></i> +123-456-7890 </a>
-            <a href="#" class="links"> <i class="fas fa-envelope"></i> nikampriyanka2002@gmail.com</a>
-            <a href="#" class="links"> <i class="fas fa-map-marker-alt"></i> Pune-India, 411015</a>
+            <a  class="links"> <i class="fas fa-phone"></i> +123-456-7890 </a>
+            <a  class="links"> <i class="fas fa-envelope"></i> nikampriyanka2002@gmail.com</a>
+            <a  class="links"> <i class="fas fa-map-marker-alt"></i> Pune-India, 411015</a>
         </div>
 
         

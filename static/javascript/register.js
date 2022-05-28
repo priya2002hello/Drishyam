@@ -1,6 +1,4 @@
-console.log("Candidate registration")
-
-
+//candidate registration
 const defaultbtn=document.querySelector('#file')
 const img=document.querySelector('.output-image')
 const FileName=document.querySelector('.filename')

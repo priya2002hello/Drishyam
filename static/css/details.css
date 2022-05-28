@@ -79,9 +79,9 @@ section{
     display: flex;
     align-items: center;
     justify-content: center;
-    background: url(../2.webp) no-repeat;
+    background: url(../home_bg.webp) no-repeat;
     background-position: center;
-    background-size: cover;
+    background-size: cover; 
     padding-top: 17rem;
     padding-bottom: 10rem;
 }

@@ -16,7 +16,7 @@ from werkzeug.utils import secure_filename
 app=Flask(__name__)
 socketio = SocketIO(app,cors_allowed_origins='*' )
 
-
+#routes to html pages.
 #render index.html file on route "/"
 @app.route('/',methods=['GET'])
 def index():
@@ -120,6 +120,7 @@ def image(data_image):
     except:
         print("\nMain.py :- detect face event Error")
 
+#rec_face event , emits recognised face and name of person
 @socketio.on('rec face')
 def recognise(data_image):
     try:
@@ -161,9 +162,10 @@ def recognise(data_image):
     except:
         print("\n main.py :- there was an issue in rec face event in main.py")
 
-@socketio.on('update criminal record')
+#add new criminal record event
+@socketio.on('add criminal record')
 def update(data):
-    #rface=recognise_face()
+    #get details of criminal from website
     name=data['name']
     image_url=data['image_url']
     count=data['count']
@@ -171,9 +173,10 @@ def update(data):
     gender= data['gender']
     place= data['place']
     case_info=data['case_info']
+
+
     frame = readb64(image_url)
     encodings=encoding.gen_encodings(frame)
-    print("Criminal Records updated " + name +age +gender +place +case_info )
     for single_encoding in encodings:
         single_encoding= single_encoding.tolist()
         record={
@@ -188,10 +191,10 @@ def update(data):
 
         }
         criminal_records.insert_one(record)
+        print("Criminal Records updated " + name + age + gender + place + case_info)
     print("\n count is :",count)
     if(count==15):
         store()
-    #cv2.imwrite("C:/Users/Priyanka/PycharmProjects/Drishyam(1.0)/static/image_dataset/priyanka_nikam/{}.jpg".format(str(count)+name),frame)
 
 
 
