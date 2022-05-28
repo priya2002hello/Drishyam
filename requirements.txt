@@ -1,5 +1,6 @@
 bidict==0.22.0
-boost
+boost==0.1
+boost-py
 certifi==2022.5.18
 charset-normalizer==2.0.12
 click==8.1.3
