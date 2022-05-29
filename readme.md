@@ -23,7 +23,7 @@ Police Clearance is a must requirement for recruitment in gov jobs. It is also i
 
 <hr>
 Drishyam Solves these problems with the use of Face Recognition Technology.
-<h2>Flowchart</h2>
+<h2>Design flowchart</h2>
 
 ![1drishyam ](https://user-images.githubusercontent.com/76547925/170865283-7cd21247-7304-49a6-b052-2cf24abbc16c.png)
 
