@@ -93,8 +93,8 @@ def register():
 
                }
                candidate_records.insert_one(data)
-               print("\n main.py :- candidate_registration route :image saved")
-        print("\nmain.py :- candiate_registration route",name,seatno)
+               print("\n app.py :- candidate_registration route :image saved")
+        print("\napp.py :- candiate_registration route",name,seatno)
         return redirect('/candidate_registration')
     else:
         #get request
@@ -125,29 +125,29 @@ def image(data_image):
 def recognise(data_image):
     try:
         rface = recognise_face()
-        print("\nmain.py :- rec face event")
+        print("\napp.py :- rec face event")
         frame_url=data_image["frame"]
         seat_no=data_image['seat_no']
 
         frame =readb64(frame_url)
         data= rface.rec_frames(frame,seat_no)
         if data['status']=="unavailable":
-            print("\n main.py :- candidate is unavailable")
+            print("\n app.py :- candidate is unavailable")
             emit('rec_face', {
                 "status":"unavailable"
             })
         elif data['status']=="seatno not found":
-            print("\n main.py :- candidate seat no not present in database")
+            print("\n app.py :- candidate seat no not present in database")
             emit('rec_face', {
                 "status": "seat no not found"
             })
         elif data["status"]=="error":
-            print("\n main.py :- error occured in recognise_face_images.py")
+            print("\n app.py :- error occured in recognise_face_images.py")
             emit('rec_face', {
                 "status": "error"
             })
         else:
-            print("\n main.py :- data returned",data)
+            print("\n app.py :- data returned",data)
             frame=data['image']
             name=data['name']
             status=data['status']
@@ -160,7 +160,7 @@ def recognise(data_image):
                      "status":status
                    })
     except:
-        print("\n main.py :- there was an issue in rec face event in main.py")
+        print("\n app.py :- there was an issue in rec face event in app.py")
 
 #add new criminal record event
 @socketio.on('add criminal record')
