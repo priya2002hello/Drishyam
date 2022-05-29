@@ -66,6 +66,7 @@ fresh candidates can apply for Police Clearance here . Candidates have to fill a
   Visual Studio 2019 :- Install <b>Desktop development with C++</b> , also in optional section , select <b>c++ cmake tools for Windows</b>
   
  <h4> Run the project </h4>
- 1)clone the  git repo
-
+ 1)clone the  git repo<br>
+ 2)In Terminal Run :- <b>pip3 install -r requirements.txt</b><br>
+ 3) Then give command :- <b> flask run </b><br>
   
