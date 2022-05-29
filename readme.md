@@ -76,3 +76,6 @@ fresh candidates can apply for Police Clearance here . Candidates have to fill a
  2)In Terminal Run :- <b>pip3 install -r requirements.txt</b><br>
  3) Then give command :- <b> flask run </b><br>
   
+<hr>
+<h2>Video link of project with full explanation :</h2>
+https://youtu.be/9JfNefa7jag
