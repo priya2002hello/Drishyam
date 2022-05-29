@@ -59,7 +59,7 @@ fresh candidates can apply for Police Clearance here . Candidates have to fill a
    <h4>Language</h4>HTML , CSS , JavaScript<br>
    <h4>Video transmission</h4> Socket.io (Web Sockets)
 <hr>
-<h3>Installation</h3>
+<h2>Installation</h2>
 <h4>Requirements</h4>
   python 3.x<br>
   Windows OS (might work on mac and linux but not tested )<br>
