@@ -59,3 +59,13 @@ fresh candidates can apply for Police Clearance here . Candidates have to fill a
    <h4>Language</h4>HTML , CSS , JavaScript<br>
    <h4>Video transmission</h4> Socket.io (Web Sockets)
 <hr>
+<h3>Installation</h3>
+<h4>Requirements</h4>
+  python 3.x<br>
+  Windows OS (might work on mac and linux but not tested )<br>
+  Visual Studio 2019 :- Install <b>Desktop development with C++</b> , also in optional section , select <b>c++ cmake tools for Windows</b>
+  
+ <h4> Run the project </h4>
+ 1)clone the  git repo
+
+  
