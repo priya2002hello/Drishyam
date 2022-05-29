@@ -77,5 +77,8 @@ fresh candidates can apply for Police Clearance here . Candidates have to fill a
  3) Then give command :- <b> flask run </b><br>
   
 <hr>
+<h2>Sprint sheet of day to day task by using Aglie methodology:</h2>
+AGILE METHODOLOGY:- In this methodology, I divided my whole task into 4 week sprint program, and proceeded step by step from learning , building and deploying the project. Whatever I learned, explored, researched during this program is fully detailed in tables below:
+https://docs.google.com/spreadsheets/d/1TCJcANOJM9bh-HEBlfEL8v3x35CbnonFJkziMc0hkyM/edit?usp=sharing
 <h2>Video link of project with full explanation :</h2>
 https://youtu.be/9JfNefa7jag
